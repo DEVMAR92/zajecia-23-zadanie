@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj</title>
+
+    <style>
+
+        .container{
+            background-color: darkgray;
+            font-family: "DejaVu Sans";
+            font-size: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .title{
+            font-size: 48px;
+            color: mintcream;
+            text-align: center;
+            font-family: "Britannic Bold";
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1 class="title">Dodaj książkę</h1>
+
+<form action="/dodaj" method="post" th:object="${book}">
+
+    <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
+    <input type="date" placeholder="Data wydania" th:field="*{releaseDate}"/><br/>
+    <select th:field="*{category}">
+        <option th:each="category: ${T(pl.zajecia23zadanie.zadaniedomowe.Category).values()}"
+                th:text="${category}"
+                th:value="${category}"></option>
+    </select><br/>
+    <input type="text" placeholder="isbn" th:field="*{isbn}" lenght="13"/><br/>
+
+    <input type="submit" value="Dodaj" />
+
+</form>
+
+</div>
+</body>
+</html>

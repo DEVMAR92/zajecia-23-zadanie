@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=“http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteka</title>
+
+    <style>
+        .button {
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        .container{
+            background-color: darkgray;
+            font-family: "DejaVu Sans";
+            font-size: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        .title{
+            font-size: 48px;
+            color: mintcream;
+            text-align: center;
+            font-family: "Britannic Bold";
+        }
+        .buttons-container{
+            padding-left: 10px;
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <h1 class="title">LISTA KSIĄŻEK</h1>
+
+    <div class="buttons-container">
+        <a href="/dodaj" style="padding-left: 42%">
+            <button class="button">Dodaj</button>
+        </a>
+        <a href="/" style="padding-left: 10px">
+            <button class="button">Edytuj</button>
+        </a>
+        <a href="/" style="padding-left: 10px">
+            <button class="button">Usuń</button>
+        </a>
+    </div>
+
+    <br>
+
+    <ul>
+        <li th:each="book: ${books}">
+            <h5 th:text="${book.title} + ', data wydania ' + ${book.releaseDate} + ', kategoria: ' + ${book.category}"></h5>
+
+            <a th:href="'/book_nr=' + ${book.id}">
+                <button class="button">Szczegóły</button>
+            </a>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
