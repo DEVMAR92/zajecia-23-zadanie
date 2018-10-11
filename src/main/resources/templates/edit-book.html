@@ -26,7 +26,24 @@
 <body>
 <div class="container">
 
+    <h1 class="title">Edytuj książkę</h1>
 
+    <form th:action="@{/edit_book}" method="post" th:object="${book}">
+
+        <input type="hidden" th:field="*{id}"/> <br/>
+        <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
+        <input type="text" placeholder="Opis" th:field="*{description}"/> <br/>
+        <input type="date" placeholder="Data wydania" th:field="*{releaseDate}"/><br/>
+        <select th:field="*{category}">
+            <option th:each="category: ${T(pl.zajecia23zadanie.zadaniedomowe.model.Category).values()}"
+                    th:text="${category}"
+                    th:value="${category}"></option>
+        </select><br/>
+        <input type="text" placeholder="isbn" th:field="*{isbn}" lenght="13"/><br/>
+
+        <input type="submit" value="Edytuj" />
+
+    </form>
 
 </div>
 </body>

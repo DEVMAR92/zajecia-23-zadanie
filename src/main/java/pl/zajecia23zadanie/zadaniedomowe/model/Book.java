@@ -1,4 +1,4 @@
-package pl.zajecia23zadanie.zadaniedomowe;
+package pl.zajecia23zadanie.zadaniedomowe.model;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

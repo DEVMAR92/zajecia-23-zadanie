@@ -15,7 +15,8 @@
             display: inline-block;
             font-size: 16px;
         }
-        .container{
+
+        .container {
             background-color: darkgray;
             font-family: "DejaVu Sans";
             font-size: 20px;
@@ -23,13 +24,21 @@
             display: flex;
             flex-direction: column;
         }
-        .title{
+
+        .title {
             font-size: 48px;
             color: mintcream;
             text-align: center;
             font-family: "Britannic Bold";
         }
-        .buttons-container{
+        .headers {
+            font-size: 28px;
+            color: mintcream;
+            text-align: center;
+            font-family: "Britannic Bold";
+        }
+
+        .buttons-container {
             padding-left: 10px;
             display: flex;
             flex-direction: row;
@@ -39,19 +48,32 @@
     </style>
 </head>
 <body>
-<div class="container">
+<div class="container" >
 
     <h1 class="title">LISTA KSIĄŻEK</h1>
 
+    <h3 class="headers">SORTOWANIE</h3>
+
     <div class="buttons-container">
-        <a href="/dodaj" style="padding-left: 42%">
+
+        <a href="/sort=title" style="padding-left: 42%">
+            <button class="button">Tytuł</button>
+        </a>
+
+        <a href="/sort=isbn" style="padding-left: 10px">
+            <button class="button">Isbn</button>
+        </a>
+
+        <a href="/sort=date" style="padding-left: 10px">
+            <button class="button">Data</button>
+        </a>
+    </div>
+
+    <h3 class="headers">MENU</h3>
+
+    <div class="buttons-container">
+        <a href="/add_book" style="padding-left: 45%">
             <button class="button">Dodaj</button>
-        </a>
-        <a href="/" style="padding-left: 10px">
-            <button class="button">Edytuj</button>
-        </a>
-        <a href="/" style="padding-left: 10px">
-            <button class="button">Usuń</button>
         </a>
     </div>
 
@@ -60,10 +82,20 @@
     <ul>
         <li th:each="book: ${books}">
             <h5 th:text="${book.title} + ', data wydania ' + ${book.releaseDate} + ', kategoria: ' + ${book.category}"></h5>
+            <div>
+                <a th:href="'/book_nr=' + ${book.id}">
+                    <button class="button">Szczegóły</button>
+                </a>
 
-            <a th:href="'/book_nr=' + ${book.id}">
-                <button class="button">Szczegóły</button>
-            </a>
+                <a th:href="'/edit_book=' + ${book.id}" style="padding-left: 10px">
+                    <button class="button">Edytuj</button>
+                </a>
+
+                <a th:href="'/remove_book=' + ${book.id}" style="padding-left: 10px">
+                    <button class="button">Usuń</button>
+                </a>
+
+            </div>
         </li>
     </ul>
 </div>
